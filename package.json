@@ -1,0 +1,31 @@
+{
+  "name": "koa-course",
+  "version": "1.0.0",
+  "description": "getting started with koa",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cardfaux/GettingstartedKoa.git"
+  },
+  "keywords": [
+    "koa",
+    "nodejs"
+  ],
+  "author": "james hagood",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cardfaux/GettingstartedKoa/issues"
+  },
+  "homepage": "https://github.com/cardfaux/GettingstartedKoa#readme",
+  "dependencies": {
+    "koa": "^2.13.0",
+    "koa-router": "^9.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
