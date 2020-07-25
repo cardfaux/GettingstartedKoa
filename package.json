@@ -23,6 +23,7 @@
   "homepage": "https://github.com/cardfaux/GettingstartedKoa#readme",
   "dependencies": {
     "koa": "^2.13.0",
+    "koa-json": "^2.0.2",
     "koa-router": "^9.1.0"
   },
   "devDependencies": {

@@ -4,5 +4,6 @@
 # Koa
 # Nodemon
 # koa-router
+# koa-json
 
 # Koa ships with just the basics so no router

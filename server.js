@@ -1,6 +1,7 @@
 // Installed Modules
 const Koa = require("koa");
 const koaRouter = require("koa-router");
+const json = require("koa-json");
 
 // Other File Imports
 const colors = require("./colors");
@@ -12,13 +13,9 @@ const router = new koaRouter();
 // Constants
 const PORT = process.env.PORT || 3000;
 
-//Middlewares
-// app.use(async (ctx) => {
-//   ctx.body = "Hello James";
-// });
+app.use(json());
 
 // logger
-
 app.use(async (ctx, next) => {
   await next();
   const rt = ctx.response.get("X-Response-Time");
@@ -31,7 +28,6 @@ app.use(async (ctx, next) => {
 });
 
 // x-response-time
-
 app.use(async (ctx, next) => {
   const start = Date.now();
   await next();
@@ -45,7 +41,6 @@ app.use(router.allowedMethods());
 
 // Routes
 router.get("/about", async (ctx) => {
-  console.log(ctx);
   return (
     ctx.body = "<h1>About Page</h1>"
   );
@@ -58,6 +53,22 @@ router.get("/contact", async (ctx) => {
 router.get("/gallery", async (ctx) => {
   return (
     ctx.body = "<h1>Gallery Page</h1>"
+  );
+});
+router.get("/api/users", async (ctx) => {
+  return (
+    ctx.body = [
+      {
+        'username': 'billy123',
+        'name': 'Billy',
+        'age': 23
+      },
+      {
+        'username': 'james123',
+        'name': 'James',
+        'age': 35
+      }
+    ]
   );
 });
 
