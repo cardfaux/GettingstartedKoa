@@ -2,6 +2,8 @@
 const Koa = require("koa");
 const koaRouter = require("koa-router");
 const json = require("koa-json");
+const render = require("koa-ejs");
+const path = require("path");
 
 // Other File Imports
 const colors = require("./colors");
@@ -10,10 +12,17 @@ const colors = require("./colors");
 const app = new Koa();
 const router = new koaRouter();
 
+// EJS
+render(app, {
+  root: path.join(__dirname, "views"),
+  layout: "template",
+  viewExt: "ejs",
+  cache: false,
+  debug: true,
+});
+
 // Constants
 const PORT = process.env.PORT || 3000;
-
-app.use(json());
 
 // logger
 app.use(async (ctx, next) => {
@@ -36,10 +45,14 @@ app.use(async (ctx, next) => {
 });
 
 //Middlewares
+app.use(json());
 app.use(router.routes());
 app.use(router.allowedMethods());
 
 // Routes
+router.get("/", async (ctx) => {
+    await ctx.render("index");
+});
 router.get("/about", async (ctx) => {
   return (
     ctx.body = "<h1>About Page</h1>"
@@ -59,15 +72,15 @@ router.get("/api/users", async (ctx) => {
   return (
     ctx.body = [
       {
-        'username': 'billy123',
-        'name': 'Billy',
-        'age': 23
+        "username": "billy123",
+        "name": "Billy",
+        "age": 23,
       },
       {
-        'username': 'james123',
-        'name': 'James',
-        'age': 35
-      }
+        "username": "james123",
+        "name": "James",
+        "age": 35,
+      },
     ]
   );
 });
